@@ -22,7 +22,7 @@ class NavigationController: UINavigationController, UINavigationControllerDelega
         // Dispose of any resources that can be recreated.
     }
 
-    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if (viewController is StartViewController) {
             setNavigationBarHidden(true, animated: animated)
         } else {

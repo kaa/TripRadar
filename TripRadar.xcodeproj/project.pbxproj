@@ -3,209 +3,235 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A1238D11C7B16BC0058C9C8 /* UIView_Borders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1238D01C7B16BC0058C9C8 /* UIView_Borders.swift */; };
-		0A1238D31C7B8C920058C9C8 /* cameras.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A1238D21C7B8C920058C9C8 /* cameras.json */; };
-		0A1ED2791C72175E0025210D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1ED2781C72175E0025210D /* Extensions.swift */; };
-		0A1ED27B1C7217AC0025210D /* RoutingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1ED27A1C7217AC0025210D /* RoutingService.swift */; };
-		0A1ED27D1C731EF50025210D /* Cameras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1ED27C1C731EF50025210D /* Cameras.swift */; };
-		0A9A16ED1C73A3A5007BCCEA /* CameraTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A9A16EC1C73A3A5007BCCEA /* CameraTableViewCell.xib */; };
-		0AA0AA221C85BB7200F9FC9A /* DistanceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0AA211C85BB7200F9FC9A /* DistanceLabel.swift */; };
-		0AABD40C1C73755400E2D82B /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD40B1C73755400E2D82B /* StartViewController.swift */; };
-		0AABD40E1C7377C800E2D82B /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD40D1C7377C800E2D82B /* RouteViewController.swift */; };
-		0AABD4101C739C6C00E2D82B /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD40F1C739C6C00E2D82B /* NavigationController.swift */; };
-		0AABD4121C73A18E00E2D82B /* CameraTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD4111C73A18E00E2D82B /* CameraTableViewCell.swift */; };
-		0ACBA8571C6DFE3100E9F741 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACBA8561C6DFE3100E9F741 /* AppDelegate.swift */; };
-		0ACBA8591C6DFE3100E9F741 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACBA8581C6DFE3100E9F741 /* MapViewController.swift */; };
-		0ACBA85C1C6DFE3100E9F741 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ACBA85A1C6DFE3100E9F741 /* Main.storyboard */; };
-		0ACBA85E1C6DFE3100E9F741 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ACBA85D1C6DFE3100E9F741 /* Assets.xcassets */; };
-		0ACBA8611C6DFE3100E9F741 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ACBA85F1C6DFE3100E9F741 /* LaunchScreen.storyboard */; };
-		0ACBA8691C6DFF4B00E9F741 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACBA8681C6DFF4B00E9F741 /* MapKit.framework */; };
-		0ACBA86B1C6E20F400E9F741 /* SwiftSimplify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACBA86A1C6E20F400E9F741 /* SwiftSimplify.swift */; };
-		0C17BCED8A8076C7701EFE10 /* Pods_TripRadar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C0DFF7F6099B5602D01FE9 /* Pods_TripRadar.framework */; };
+		0A3B19261FAB1DCD005930F4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B19191FAB1DCC005930F4 /* Extensions.swift */; };
+		0A3B19271FAB1DCD005930F4 /* DistanceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B191A1FAB1DCC005930F4 /* DistanceLabel.swift */; };
+		0A3B19281FAB1DCD005930F4 /* UIView_Borders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B191B1FAB1DCD005930F4 /* UIView_Borders.swift */; };
+		0A3B19291FAB1DCD005930F4 /* SwiftSimplify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B191C1FAB1DCD005930F4 /* SwiftSimplify.swift */; };
+		0A3B192B1FAB1DCD005930F4 /* CameraTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B191E1FAB1DCD005930F4 /* CameraTableViewCell.xib */; };
+		0A3B192D1FAB1DCD005930F4 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B19201FAB1DCD005930F4 /* RouteViewController.swift */; };
+		0A3B192E1FAB1DCD005930F4 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B19211FAB1DCD005930F4 /* StartViewController.swift */; };
+		0A3B192F1FAB1DCD005930F4 /* RoutingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B19221FAB1DCD005930F4 /* RoutingService.swift */; };
+		0A3B19301FAB1DCD005930F4 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B19231FAB1DCD005930F4 /* MapViewController.swift */; };
+		0A3B19311FAB1DCD005930F4 /* CameraTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B19241FAB1DCD005930F4 /* CameraTableViewCell.swift */; };
+		0A3B19321FAB1DCD005930F4 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B19251FAB1DCD005930F4 /* NavigationController.swift */; };
+		0A3B19421FB06AFB005930F4 /* biglogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B19411FB06AFB005930F4 /* biglogo.png */; };
+		0A4ACBD91FAB0C4A0097C914 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4ACBD81FAB0C4A0097C914 /* AppDelegate.swift */; };
+		0A4ACBDE1FAB0C4A0097C914 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A4ACBDC1FAB0C4A0097C914 /* Main.storyboard */; };
+		0A4ACBE01FAB0C4A0097C914 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A4ACBDF1FAB0C4A0097C914 /* Assets.xcassets */; };
+		0A4ACBE31FAB0C4A0097C914 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A4ACBE11FAB0C4A0097C914 /* LaunchScreen.storyboard */; };
+		D2DBA40428635C92E6324A65 /* Pods_Tripradar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE890516F1CD4514112382F5 /* Pods_Tripradar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A1238D01C7B16BC0058C9C8 /* UIView_Borders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView_Borders.swift; sourceTree = "<group>"; };
-		0A1238D21C7B8C920058C9C8 /* cameras.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cameras.json; sourceTree = "<group>"; };
-		0A1ED2781C72175E0025210D /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		0A1ED27A1C7217AC0025210D /* RoutingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingService.swift; sourceTree = "<group>"; };
-		0A1ED27C1C731EF50025210D /* Cameras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cameras.swift; sourceTree = "<group>"; };
-		0A9A16EC1C73A3A5007BCCEA /* CameraTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraTableViewCell.xib; sourceTree = "<group>"; };
-		0AA0AA211C85BB7200F9FC9A /* DistanceLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceLabel.swift; sourceTree = "<group>"; };
-		0AABD40B1C73755400E2D82B /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
-		0AABD40D1C7377C800E2D82B /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
-		0AABD40F1C739C6C00E2D82B /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
-		0AABD4111C73A18E00E2D82B /* CameraTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraTableViewCell.swift; sourceTree = "<group>"; };
-		0ACBA8531C6DFE3100E9F741 /* TripRadar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripRadar.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0ACBA8561C6DFE3100E9F741 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0ACBA8581C6DFE3100E9F741 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		0ACBA85B1C6DFE3100E9F741 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0ACBA85D1C6DFE3100E9F741 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0ACBA8601C6DFE3100E9F741 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		0ACBA8621C6DFE3100E9F741 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0ACBA8681C6DFF4B00E9F741 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		0ACBA86A1C6E20F400E9F741 /* SwiftSimplify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSimplify.swift; sourceTree = "<group>"; };
-		98E44A63C37E21F9F50A1A70 /* Pods-TripRadar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripRadar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TripRadar/Pods-TripRadar.debug.xcconfig"; sourceTree = "<group>"; };
-		A3C0DFF7F6099B5602D01FE9 /* Pods_TripRadar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TripRadar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FCAB6C16BABC18CC0E5E0033 /* Pods-TripRadar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripRadar.release.xcconfig"; path = "Pods/Target Support Files/Pods-TripRadar/Pods-TripRadar.release.xcconfig"; sourceTree = "<group>"; };
+		0A3B19191FAB1DCC005930F4 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		0A3B191A1FAB1DCC005930F4 /* DistanceLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceLabel.swift; sourceTree = "<group>"; };
+		0A3B191B1FAB1DCD005930F4 /* UIView_Borders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView_Borders.swift; sourceTree = "<group>"; };
+		0A3B191C1FAB1DCD005930F4 /* SwiftSimplify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSimplify.swift; sourceTree = "<group>"; };
+		0A3B191E1FAB1DCD005930F4 /* CameraTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraTableViewCell.xib; sourceTree = "<group>"; };
+		0A3B19201FAB1DCD005930F4 /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
+		0A3B19211FAB1DCD005930F4 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		0A3B19221FAB1DCD005930F4 /* RoutingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingService.swift; sourceTree = "<group>"; };
+		0A3B19231FAB1DCD005930F4 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		0A3B19241FAB1DCD005930F4 /* CameraTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraTableViewCell.swift; sourceTree = "<group>"; };
+		0A3B19251FAB1DCD005930F4 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		0A3B19411FB06AFB005930F4 /* biglogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = biglogo.png; sourceTree = "<group>"; };
+		0A4ACBD51FAB0C4A0097C914 /* Tripradar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tripradar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A4ACBD81FAB0C4A0097C914 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0A4ACBDD1FAB0C4A0097C914 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0A4ACBDF1FAB0C4A0097C914 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0A4ACBE21FAB0C4A0097C914 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0A4ACBE41FAB0C4A0097C914 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17A4C4CF0F7CF64CE6B45AFF /* Pods-Tripradar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tripradar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tripradar/Pods-Tripradar.debug.xcconfig"; sourceTree = "<group>"; };
+		AA555D2EA0C7FBCC0B0A7C61 /* Pods-Tripradar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tripradar.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tripradar/Pods-Tripradar.release.xcconfig"; sourceTree = "<group>"; };
+		DE890516F1CD4514112382F5 /* Pods_Tripradar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tripradar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0ACBA8501C6DFE3100E9F741 /* Frameworks */ = {
+		0A4ACBD21FAB0C4A0097C914 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0ACBA8691C6DFF4B00E9F741 /* MapKit.framework in Frameworks */,
-				0C17BCED8A8076C7701EFE10 /* Pods_TripRadar.framework in Frameworks */,
+				D2DBA40428635C92E6324A65 /* Pods_Tripradar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0ACBA84A1C6DFE3100E9F741 = {
+		0A4ACBCC1FAB0C4A0097C914 = {
 			isa = PBXGroup;
 			children = (
-				0ACBA8681C6DFF4B00E9F741 /* MapKit.framework */,
-				0ACBA8551C6DFE3100E9F741 /* TripRadar */,
-				0ACBA8541C6DFE3100E9F741 /* Products */,
-				40B55A68C459473968BC6552 /* Pods */,
-				DA2959D68DC4E67F61F1E45A /* Frameworks */,
+				0A4ACBD71FAB0C4A0097C914 /* Tripradar */,
+				0A4ACBD61FAB0C4A0097C914 /* Products */,
+				AF5A94B73F408CFBC3A932FF /* Pods */,
+				1D204C5761D0878B7068C5EC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		0ACBA8541C6DFE3100E9F741 /* Products */ = {
+		0A4ACBD61FAB0C4A0097C914 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0ACBA8531C6DFE3100E9F741 /* TripRadar.app */,
+				0A4ACBD51FAB0C4A0097C914 /* Tripradar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0ACBA8551C6DFE3100E9F741 /* TripRadar */ = {
+		0A4ACBD71FAB0C4A0097C914 /* Tripradar */ = {
 			isa = PBXGroup;
 			children = (
-				0A1238D01C7B16BC0058C9C8 /* UIView_Borders.swift */,
-				0A1238D21C7B8C920058C9C8 /* cameras.json */,
-				0A9A16EC1C73A3A5007BCCEA /* CameraTableViewCell.xib */,
-				0ACBA86A1C6E20F400E9F741 /* SwiftSimplify.swift */,
-				0ACBA8561C6DFE3100E9F741 /* AppDelegate.swift */,
-				0ACBA8581C6DFE3100E9F741 /* MapViewController.swift */,
-				0ACBA85A1C6DFE3100E9F741 /* Main.storyboard */,
-				0ACBA85D1C6DFE3100E9F741 /* Assets.xcassets */,
-				0ACBA85F1C6DFE3100E9F741 /* LaunchScreen.storyboard */,
-				0ACBA8621C6DFE3100E9F741 /* Info.plist */,
-				0A1ED2781C72175E0025210D /* Extensions.swift */,
-				0A1ED27A1C7217AC0025210D /* RoutingService.swift */,
-				0A1ED27C1C731EF50025210D /* Cameras.swift */,
-				0AABD40B1C73755400E2D82B /* StartViewController.swift */,
-				0AABD40D1C7377C800E2D82B /* RouteViewController.swift */,
-				0AABD40F1C739C6C00E2D82B /* NavigationController.swift */,
-				0AABD4111C73A18E00E2D82B /* CameraTableViewCell.swift */,
-				0AA0AA211C85BB7200F9FC9A /* DistanceLabel.swift */,
+				0A3B19411FB06AFB005930F4 /* biglogo.png */,
+				0A3B19241FAB1DCD005930F4 /* CameraTableViewCell.swift */,
+				0A3B191E1FAB1DCD005930F4 /* CameraTableViewCell.xib */,
+				0A3B191A1FAB1DCC005930F4 /* DistanceLabel.swift */,
+				0A3B19191FAB1DCC005930F4 /* Extensions.swift */,
+				0A3B19231FAB1DCD005930F4 /* MapViewController.swift */,
+				0A3B19251FAB1DCD005930F4 /* NavigationController.swift */,
+				0A3B19201FAB1DCD005930F4 /* RouteViewController.swift */,
+				0A3B19221FAB1DCD005930F4 /* RoutingService.swift */,
+				0A3B19211FAB1DCD005930F4 /* StartViewController.swift */,
+				0A3B191C1FAB1DCD005930F4 /* SwiftSimplify.swift */,
+				0A3B191B1FAB1DCD005930F4 /* UIView_Borders.swift */,
+				0A4ACBD81FAB0C4A0097C914 /* AppDelegate.swift */,
+				0A4ACBDC1FAB0C4A0097C914 /* Main.storyboard */,
+				0A4ACBDF1FAB0C4A0097C914 /* Assets.xcassets */,
+				0A4ACBE11FAB0C4A0097C914 /* LaunchScreen.storyboard */,
+				0A4ACBE41FAB0C4A0097C914 /* Info.plist */,
 			);
-			path = TripRadar;
+			path = Tripradar;
 			sourceTree = "<group>";
 		};
-		40B55A68C459473968BC6552 /* Pods */ = {
+		1D204C5761D0878B7068C5EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				98E44A63C37E21F9F50A1A70 /* Pods-TripRadar.debug.xcconfig */,
-				FCAB6C16BABC18CC0E5E0033 /* Pods-TripRadar.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		DA2959D68DC4E67F61F1E45A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A3C0DFF7F6099B5602D01FE9 /* Pods_TripRadar.framework */,
+				DE890516F1CD4514112382F5 /* Pods_Tripradar.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AF5A94B73F408CFBC3A932FF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				17A4C4CF0F7CF64CE6B45AFF /* Pods-Tripradar.debug.xcconfig */,
+				AA555D2EA0C7FBCC0B0A7C61 /* Pods-Tripradar.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0ACBA8521C6DFE3100E9F741 /* TripRadar */ = {
+		0A4ACBD41FAB0C4A0097C914 /* Tripradar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0ACBA8651C6DFE3100E9F741 /* Build configuration list for PBXNativeTarget "TripRadar" */;
+			buildConfigurationList = 0A4ACBE71FAB0C4A0097C914 /* Build configuration list for PBXNativeTarget "Tripradar" */;
 			buildPhases = (
-				87A9501D78724D3EDB32E67B /* [CP] Check Pods Manifest.lock */,
-				0ACBA84F1C6DFE3100E9F741 /* Sources */,
-				0ACBA8501C6DFE3100E9F741 /* Frameworks */,
-				0ACBA8511C6DFE3100E9F741 /* Resources */,
-				9368BCCBDBDDCB6F4A08F7C1 /* [CP] Embed Pods Frameworks */,
-				B48790E52B33B0A25C7ADE51 /* [CP] Copy Pods Resources */,
+				D7C04991F5221EE80C663236 /* [CP] Check Pods Manifest.lock */,
+				0A4ACBD11FAB0C4A0097C914 /* Sources */,
+				0A4ACBD21FAB0C4A0097C914 /* Frameworks */,
+				0A4ACBD31FAB0C4A0097C914 /* Resources */,
+				B13F5E2CD416C6458615AB09 /* [CP] Embed Pods Frameworks */,
+				57A7E3B2989EB836DBDE7431 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = TripRadar;
-			productName = TripRadar;
-			productReference = 0ACBA8531C6DFE3100E9F741 /* TripRadar.app */;
+			name = Tripradar;
+			productName = Tripradar;
+			productReference = 0A4ACBD51FAB0C4A0097C914 /* Tripradar.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		0ACBA84B1C6DFE3100E9F741 /* Project object */ = {
+		0A4ACBCD1FAB0C4A0097C914 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0900;
-				ORGANIZATIONNAME = monografi;
+				LastSwiftUpdateCheck = 0910;
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = "Joakim Beijar";
 				TargetAttributes = {
-					0ACBA8521C6DFE3100E9F741 = {
-						CreatedOnToolsVersion = 7.2.1;
-						SystemCapabilities = {
-							com.apple.Maps.iOS = {
-								enabled = 1;
-							};
-						};
+					0A4ACBD41FAB0C4A0097C914 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 0ACBA84E1C6DFE3100E9F741 /* Build configuration list for PBXProject "TripRadar" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			buildConfigurationList = 0A4ACBD01FAB0C4A0097C914 /* Build configuration list for PBXProject "Tripradar" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 0ACBA84A1C6DFE3100E9F741;
-			productRefGroup = 0ACBA8541C6DFE3100E9F741 /* Products */;
+			mainGroup = 0A4ACBCC1FAB0C4A0097C914;
+			productRefGroup = 0A4ACBD61FAB0C4A0097C914 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0ACBA8521C6DFE3100E9F741 /* TripRadar */,
+				0A4ACBD41FAB0C4A0097C914 /* Tripradar */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0ACBA8511C6DFE3100E9F741 /* Resources */ = {
+		0A4ACBD31FAB0C4A0097C914 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0ACBA8611C6DFE3100E9F741 /* LaunchScreen.storyboard in Resources */,
-				0ACBA85E1C6DFE3100E9F741 /* Assets.xcassets in Resources */,
-				0ACBA85C1C6DFE3100E9F741 /* Main.storyboard in Resources */,
-				0A1238D31C7B8C920058C9C8 /* cameras.json in Resources */,
-				0A9A16ED1C73A3A5007BCCEA /* CameraTableViewCell.xib in Resources */,
+				0A3B19421FB06AFB005930F4 /* biglogo.png in Resources */,
+				0A3B192B1FAB1DCD005930F4 /* CameraTableViewCell.xib in Resources */,
+				0A4ACBE31FAB0C4A0097C914 /* LaunchScreen.storyboard in Resources */,
+				0A4ACBE01FAB0C4A0097C914 /* Assets.xcassets in Resources */,
+				0A4ACBDE1FAB0C4A0097C914 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		87A9501D78724D3EDB32E67B /* [CP] Check Pods Manifest.lock */ = {
+		57A7E3B2989EB836DBDE7431 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Tripradar/Pods-Tripradar-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tripradar/Pods-Tripradar-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B13F5E2CD416C6458615AB09 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Tripradar/Pods-Tripradar-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tripradar/Pods-Tripradar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7C04991F5221EE80C663236 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -216,87 +242,49 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TripRadar-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Tripradar-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9368BCCBDBDDCB6F4A08F7C1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TripRadar/Pods-TripRadar-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TripRadar/Pods-TripRadar-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B48790E52B33B0A25C7ADE51 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TripRadar/Pods-TripRadar-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TripRadar/Pods-TripRadar-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0ACBA84F1C6DFE3100E9F741 /* Sources */ = {
+		0A4ACBD11FAB0C4A0097C914 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A1ED27D1C731EF50025210D /* Cameras.swift in Sources */,
-				0AA0AA221C85BB7200F9FC9A /* DistanceLabel.swift in Sources */,
-				0A1ED27B1C7217AC0025210D /* RoutingService.swift in Sources */,
-				0AABD40E1C7377C800E2D82B /* RouteViewController.swift in Sources */,
-				0ACBA8591C6DFE3100E9F741 /* MapViewController.swift in Sources */,
-				0AABD4101C739C6C00E2D82B /* NavigationController.swift in Sources */,
-				0ACBA86B1C6E20F400E9F741 /* SwiftSimplify.swift in Sources */,
-				0ACBA8571C6DFE3100E9F741 /* AppDelegate.swift in Sources */,
-				0A1238D11C7B16BC0058C9C8 /* UIView_Borders.swift in Sources */,
-				0AABD40C1C73755400E2D82B /* StartViewController.swift in Sources */,
-				0AABD4121C73A18E00E2D82B /* CameraTableViewCell.swift in Sources */,
-				0A1ED2791C72175E0025210D /* Extensions.swift in Sources */,
+				0A3B19311FAB1DCD005930F4 /* CameraTableViewCell.swift in Sources */,
+				0A3B19301FAB1DCD005930F4 /* MapViewController.swift in Sources */,
+				0A3B192F1FAB1DCD005930F4 /* RoutingService.swift in Sources */,
+				0A3B19281FAB1DCD005930F4 /* UIView_Borders.swift in Sources */,
+				0A3B192D1FAB1DCD005930F4 /* RouteViewController.swift in Sources */,
+				0A3B19271FAB1DCD005930F4 /* DistanceLabel.swift in Sources */,
+				0A3B19261FAB1DCD005930F4 /* Extensions.swift in Sources */,
+				0A3B19321FAB1DCD005930F4 /* NavigationController.swift in Sources */,
+				0A3B192E1FAB1DCD005930F4 /* StartViewController.swift in Sources */,
+				0A3B19291FAB1DCD005930F4 /* SwiftSimplify.swift in Sources */,
+				0A4ACBD91FAB0C4A0097C914 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		0ACBA85A1C6DFE3100E9F741 /* Main.storyboard */ = {
+		0A4ACBDC1FAB0C4A0097C914 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				0ACBA85B1C6DFE3100E9F741 /* Base */,
+				0A4ACBDD1FAB0C4A0097C914 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		0ACBA85F1C6DFE3100E9F741 /* LaunchScreen.storyboard */ = {
+		0A4ACBE11FAB0C4A0097C914 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				0ACBA8601C6DFE3100E9F741 /* Base */,
+				0A4ACBE21FAB0C4A0097C914 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -304,12 +292,13 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		0ACBA8631C6DFE3100E9F741 /* Debug */ = {
+		0A4ACBE51FAB0C4A0097C914 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -318,6 +307,7 @@
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -328,14 +318,15 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -349,21 +340,22 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		0ACBA8641C6DFE3100E9F741 /* Release */ = {
+		0A4ACBE61FAB0C4A0097C914 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -372,6 +364,7 @@
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -382,14 +375,15 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -397,65 +391,70 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		0ACBA8661C6DFE3100E9F741 /* Debug */ = {
+		0A4ACBE81FAB0C4A0097C914 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 98E44A63C37E21F9F50A1A70 /* Pods-TripRadar.debug.xcconfig */;
+			baseConfigurationReference = 17A4C4CF0F7CF64CE6B45AFF /* Pods-Tripradar.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = TripRadar/Info.plist;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K26ANCL8DS;
+				INFOPLIST_FILE = Tripradar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = fi.monogra.TripRadar;
+				PRODUCT_BUNDLE_IDENTIFIER = fi.monogra.Tripradar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
-		0ACBA8671C6DFE3100E9F741 /* Release */ = {
+		0A4ACBE91FAB0C4A0097C914 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FCAB6C16BABC18CC0E5E0033 /* Pods-TripRadar.release.xcconfig */;
+			baseConfigurationReference = AA555D2EA0C7FBCC0B0A7C61 /* Pods-Tripradar.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = TripRadar/Info.plist;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K26ANCL8DS;
+				INFOPLIST_FILE = Tripradar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = fi.monogra.TripRadar;
+				PRODUCT_BUNDLE_IDENTIFIER = fi.monogra.Tripradar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0ACBA84E1C6DFE3100E9F741 /* Build configuration list for PBXProject "TripRadar" */ = {
+		0A4ACBD01FAB0C4A0097C914 /* Build configuration list for PBXProject "Tripradar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0ACBA8631C6DFE3100E9F741 /* Debug */,
-				0ACBA8641C6DFE3100E9F741 /* Release */,
+				0A4ACBE51FAB0C4A0097C914 /* Debug */,
+				0A4ACBE61FAB0C4A0097C914 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0ACBA8651C6DFE3100E9F741 /* Build configuration list for PBXNativeTarget "TripRadar" */ = {
+		0A4ACBE71FAB0C4A0097C914 /* Build configuration list for PBXNativeTarget "Tripradar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0ACBA8661C6DFE3100E9F741 /* Debug */,
-				0ACBA8671C6DFE3100E9F741 /* Release */,
+				0A4ACBE81FAB0C4A0097C914 /* Debug */,
+				0A4ACBE91FAB0C4A0097C914 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 0ACBA84B1C6DFE3100E9F741 /* Project object */;
+	rootObject = 0A4ACBCD1FAB0C4A0097C914 /* Project object */;
 }

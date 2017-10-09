@@ -10,13 +10,11 @@ import UIKit
 import MapKit
 import SDWebImage
 
-class CameraSegment {
+struct CameraSegment {
+    let name: String
+    let weatherReport: WeatherReport?
     let distance : Double
-    let camera : Camera
-    init(distance: Double, camera: Camera) {
-        self.distance = distance
-        self.camera = camera
-    }
+    let cameras : [Camera]
 }
 
 class RouteViewController: UITableViewController {
@@ -30,15 +28,18 @@ class RouteViewController: UITableViewController {
             var distance = 0.0
             cameraSegments.removeAll()
             cameraSegmentHeights.removeAll()
+            print("nowhas",segments.count)
             for segment in segments {
                 distance = distance + segment.distance
-                if let camera = segment.camera {
-                    //if !camera.isActive { continue }
-                    cameraSegments.append(CameraSegment(distance: distance, camera: camera))
-                    cameraSegmentHeights.append(-1.0)
-                    distance = 0.0
+                guard let station = segment.station else {
+                    continue;
                 }
+                //if !camera.isActive { continue }
+                cameraSegments.append(CameraSegment(name: station.name, weatherReport: station.weatherReport, distance: distance, cameras: station.cameras))
+                cameraSegmentHeights.append(-1.0)
+                distance = 0.0
             }
+            print("nowdisplaying",cameraSegments.count)
         }
     }
     

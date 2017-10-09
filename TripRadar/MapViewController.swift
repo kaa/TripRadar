@@ -39,13 +39,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         // Cameras
         let cameraAnnotations = segments
-            .filter { $0.camera != nil && $0.camera!.isActive }
-            .map {t in t.camera!}
+            .filter { $0.station != nil }
+            .map {t in t.station!}
             .map {t -> MKPointAnnotation in
                 let annotation = CameraAnnotation()
-                annotation.coordinate = t.coordinates
+                annotation.coordinate = t.location
                 annotation.title = t.name
-                annotation.isActive = t.isActive
                 return annotation
             }
         mapView.addAnnotations(cameraAnnotations)

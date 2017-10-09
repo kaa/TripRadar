@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_TripRadarVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_TripRadarVersionString[];
+FOUNDATION_EXPORT double Pods_TripradarVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_TripradarVersionString[];
 

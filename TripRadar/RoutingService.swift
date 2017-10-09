@@ -11,260 +11,180 @@ import CoreLocation
 import GoogleMaps
 import GooglePlaces
 
-var GlobalUserInitiatedQueue: DispatchQueue {
-    return DispatchQueue.global(qos: .userInitiated)
+struct CameraStationsResponse : Codable {
+    var features : [CameraStation]
 }
-var GlobalMainQueue: DispatchQueue {
-    return DispatchQueue.main
-}
+struct CameraStation : Codable {
+    var geometry: Geometry?
+    var properties: Properties
+    
+    struct Properties: Codable {
+        var roadStationId: Int
+        var name: String
+        var names: [String:String]
+        var presets: [Camera]
+        var nearestWeatherStationId: Int
+    }
 
-class CameraPresetsParser : NSObject, XMLParserDelegate {
-    var presets : [CameraPreset] = []
-    var preset : CameraPreset = CameraPreset()
-    var lastElementName = ""
-    
-    let dateFormatter = DateFormatter()
-    override init() {
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        super.init()
+    struct Geometry : Codable {
+        var coordinates: [Double]
+    }
+
+    struct Camera : Codable {
+        var cameraId: String
+        var imageUrl: String?
+        var presentationName: String?
     }
     
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        if elementName=="camerapreset" {
-            preset = CameraPreset()
-        } else {
-            lastElementName = elementName
-        }
-    }
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if elementName=="camerapreset" {
-            presets.append(preset)
-        }
-    }
-    func parser(_ parser: XMLParser, foundCharacters string: String) {
-        let trimmedString = string.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
-        guard trimmedString.characters.count > 0 else { return }
-        switch lastElementName {
-        case "presetid":
-            preset.id = preset.id+trimmedString
-        case "public":
-            preset.isPublic = trimmedString=="true"
-        case "utc":
-            if let date = dateFormatter.date(from: trimmedString) {
-                preset.latestImageDate = date
-            }
-        default:
-            break;
-        }
+    enum CodingKeys: String, CodingKey {
+        case geometry
+        case properties
     }
 }
 
-struct CameraPreset {
-    var id : String = ""
-    var isPublic : Bool = false
-    var latestImageDate : Date?
+struct WeatherStationsResponse : Codable {
+    var weatherStations: [WeatherStation]
 }
-
-class WeatherPresetsParser : NSObject, XMLParserDelegate {
-    var presets : [String: WeatherPreset] = [String: WeatherPreset]()
-    var preset : WeatherPreset = WeatherPreset()
-    var lastElementName = ""
+struct WeatherStation : Codable {
+    var id: Int
+    var sensorValues: [SensorValue]
     
-    let dateFormatter = DateFormatter()
-    override init() {
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        super.init()
-    }
-    
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        if elementName=="roadweather" {
-            preset = WeatherPreset()
-        } else {
-            lastElementName = elementName
-        }
-    }
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if elementName=="roadweather" {
-            presets[preset.id] = preset
-        }
-    }
-    func parser(_ parser: XMLParser, foundCharacters string: String) {
-        let trimmedString = string.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
-        guard trimmedString.characters.count > 0 else { return }
-        switch lastElementName {
-        case "stationid":
-            preset.id = preset.id+trimmedString
-        case "airtemperature1":
-            if let t = Double(trimmedString) {
-                preset.airTemperature = t
-            }
-        case "airtemperature1change":
-            if let t = Double(trimmedString) {
-                preset.airTemperatureDelta = t
-            }
-        case "roadsurfacetemperature1":
-            if let t = Double(trimmedString) {
-                preset.roadTemperature = t
-            }
-        case "roadsurfacetemperature1change":
-            if let t = Double(trimmedString) {
-                preset.roadTemperatureDelta = t
-            }
-        case "averagewindspeed":
-            if let t = Double(trimmedString) {
-                preset.windDirection = t
-            }
-        case "winddirection":
-            if let t = Double(trimmedString) {
-                preset.windDirection = t
-            }
-        case "roadsurfaceconditions1":
-            if let t = Int(trimmedString) {
-                preset.roadConditions = t
-            }
-        case "warning1":
-            if let t = Int(trimmedString) {
-                preset.warningConditions = t
-            }
-        case "sunup":
-            preset.sun = trimmedString=="1"
-        case "bright":
-            preset.bright = trimmedString=="1"
-        case "utc":
-            if let date = dateFormatter.date(from: trimmedString) {
-                preset.latestReadingDate = date
-            }
-        default:
-            break;
-        }
+    struct SensorValue : Codable {
+        var name: String
+        var sensorValue: Double
     }
 }
 
-struct WeatherPreset {
-    var id : String = ""
-    var latestReadingDate : Date = Date(timeIntervalSince1970: 0)
-    var airTemperature : Double = Double.signalingNaN
-    var airTemperatureDelta : Double = Double.signalingNaN
-    var roadTemperature : Double = Double.signalingNaN
-    var roadTemperatureDelta : Double = Double.signalingNaN
-    var windSpeed : Double = Double.signalingNaN
-    var windDirection : Double = Double.signalingNaN
-    var roadConditions : Int = 0
-    var warningConditions : Int = 0
-    var sun : Bool = false
-    var bright : Bool = false
+enum RoutingServiceError : Error {
+    case unableToLoadCameraStations(networkError: Error)
+    case emptyCameraStationsResponse
+    case invalidCameraStationsResponse(parsingError: Error)
+
+    case unableToLoadWeatherStations(networkError: Error)
+    case emptyWeatherStationsResponse
+    case invalidWeatherStationsResponse(parsingError: Error)
+    
+    case unableToRoute
 }
 
 class RoutingService {
-    func loadCameraPresets(completionHandler: @escaping ([CameraPreset],Error?) -> Void) {
-        URLSession.shared.dataTask(with: URL(string:"http://tie.digitraffic.fi/sujuvuus/ws/cameraPresets")!) {
+    func loadCameraStations(completionHandler: @escaping ([CameraStation], RoutingServiceError?) -> Void) {
+        URLSession.shared.dataTask(with: URL(string:"https://tie.digitraffic.fi/api/v1/metadata/camera-stations")!) {
             maybeData, response, error in
-            guard error == nil, let data = maybeData else { completionHandler([], error); return }
-            let parser = XMLParser(data: data)
-            let session = CameraPresetsParser()
-            parser.delegate = session;
-            parser.parse()
-            DispatchQueue.main.async() {
-                completionHandler(session.presets,parser.parserError)
+            guard error == nil else {
+                completionHandler([], RoutingServiceError.unableToLoadCameraStations(networkError: error!))
+                return;
             }
-        }.resume()
-    }
-    
-    func loadWeatherPresets(completionHandler: @escaping ([String: WeatherPreset],Error?) -> Void) {
-        URLSession.shared.dataTask(with: URL(string:"http://tie.digitraffic.fi/sujuvuus/ws/roadWeather")!) {
-            maybeData, response, error in
-            guard error == nil, let data = maybeData else {
-                completionHandler([String:WeatherPreset](), error)
+            guard let data = maybeData else {
+                completionHandler([], RoutingServiceError.emptyCameraStationsResponse);
                 return
             }
-            let parser = XMLParser(data: data)
-            let session = WeatherPresetsParser()
-            parser.delegate = session;
-            parser.parse()
-            DispatchQueue.main.async() {
-                completionHandler(session.presets,parser.parserError)
+            do {
+//                print(String(data: data, encoding: String.Encoding.utf8))
+                let stationsResponse = try JSONDecoder().decode(CameraStationsResponse.self, from: data)
+                completionHandler(stationsResponse.features, nil)
+            } catch let parserError {
+                completionHandler([], RoutingServiceError.invalidCameraStationsResponse(parsingError: parserError))
             }
         }.resume()
     }
     
-    func loadCameras(completionHandler: @escaping ([Camera], Error?) -> Void) {
-        var cameras: [Camera] = []
-        guard let filepath = Bundle.main.path(forResource: "cameras", ofType: "json") else {
-            completionHandler(cameras, NSError(domain: "routing", code: 1, userInfo: nil))
-            return
-        }
-        do {
-            let c = jsonString.data()
-            let contents = try NSString(contentsOfFile: filepath, usedEncoding: nil) as String
-            cameras = [Camera](json: contents)
-        } catch {
-            completionHandler(cameras, NSError(domain: "routing", code: 2, userInfo: nil))
-            return
-        }
-        
+    func loadWeatherData(completionHandler: @escaping ([Int: WeatherReport], RoutingServiceError?) -> Void) {
+        URLSession.shared.dataTask(with: URL(string:"https://tie.digitraffic.fi/api/v1/data/weather-data")!) {
+            maybeData, response, error in
+            guard error == nil else {
+                completionHandler([:], RoutingServiceError.unableToLoadWeatherStations(networkError: error!))
+                return;
+            }
+            guard let data = maybeData else {
+                completionHandler([:], RoutingServiceError.emptyWeatherStationsResponse);
+                return
+            }
+            do {
+                let weatherResponse = try JSONDecoder().decode(WeatherStationsResponse.self, from: data)
+                let reports = weatherResponse.weatherStations.reduce([Int:WeatherReport]()) {
+                    acc, report in
+                    var ret = acc
+                    var airTemperature = Double.signalingNaN
+                    var roadTemperature = Double.signalingNaN
+                    for sensor in report.sensorValues {
+                        if(sensor.name=="ILMA") {
+                            airTemperature = sensor.sensorValue
+                        } else if(sensor.name=="TIE_1" || sensor.name=="TIE_2") {
+                            roadTemperature = sensor.sensorValue
+                        }
+                    }
+                    if(airTemperature != Double.signalingNaN && roadTemperature != Double.signalingNaN) {
+                        ret[report.id] = WeatherReport(airTemperature: airTemperature, roadTemperature: roadTemperature)
+                    }
+                    return ret
+                }
+                completionHandler(reports, nil)
+            } catch let parserError {
+                completionHandler([:], RoutingServiceError.invalidWeatherStationsResponse(parsingError: parserError))
+            }
+        }.resume()
+    }
+    
+    
+    func loadStations(completionHandler: @escaping ([Station], Error?) -> Void) {
         let presetsGroup = DispatchGroup()
 
-        var cameraError : Error?
-        var maybeCameraPresets: [CameraPreset]?
+        var cameraError : RoutingServiceError?
+        var maybeCameraStations: [CameraStation]?
         presetsGroup.enter()
-        self.loadCameraPresets() {
+        self.loadCameraStations() {
             response, error in
             if error == nil {
-                maybeCameraPresets = response
+                maybeCameraStations = response
             } else {
                 cameraError = error
             }
             presetsGroup.leave()
         }
         
-        var weatherError : Error?
-        var maybeWeatherPresets: [String:WeatherPreset]?
+        var weatherError : RoutingServiceError?
+        var maybeWeatherReports: [Int:WeatherReport]?
         presetsGroup.enter()
-        self.loadWeatherPresets {
+        self.loadWeatherData {
             response, error in
             if error == nil {
-                maybeWeatherPresets = response
+                maybeWeatherReports = response
             } else {
                 weatherError = error
             }
             presetsGroup.leave()
         }
   
-        presetsGroup.notify(queue: GlobalMainQueue) {
-            guard cameraError==nil else {
+        presetsGroup.notify(queue: DispatchQueue.main) {
+            guard cameraError==nil, let cameraStations = maybeCameraStations else {
                 completionHandler([],cameraError)
                 return
             }
-            guard weatherError==nil else {
+            guard weatherError==nil, let weatherReports = maybeWeatherReports else {
                 completionHandler([],weatherError)
                 return
             }
-            guard let cameraPresets = maybeCameraPresets,
-                  let weatherPresets = maybeWeatherPresets else {
-                completionHandler([],NSError(domain: "routing", code: 3, userInfo: nil))
-                return
+            let stations = cameraStations.filter { station in station.geometry != nil }.map {
+                station in
+                return Station(
+                    id: station.properties.roadStationId,
+                    name: station.properties.names["en"] ?? station.properties.names["fi"] ?? station.properties.name,
+                    location: CLLocationCoordinate2D(
+                        latitude: station.geometry!.coordinates[1],
+                        longitude: station.geometry!.coordinates[0]
+                    ),
+                    weatherReport: weatherReports[station.properties.nearestWeatherStationId],
+                    cameras: station.properties.presets
+                        .filter { cam in cam.imageUrl != nil }
+                        .map { cam in return Camera(name: cam.presentationName ?? "-", imageUrl: cam.imageUrl!, latestImage: nil) }
+                )
             }
-            var directionsHash = [String: CameraDirection]()
-            let t = cameras.map { $0.directions }.joined()
-            for direction in t {
-                directionsHash[direction.id] = direction
-            }
-            for preset in cameraPresets {
-                if let direction = directionsHash[preset.id] {
-                    direction.isPublic = preset.isPublic
-                    direction.latestImageDate = preset.latestImageDate
-                }
-            }
-            for camera in cameras {
-                if let weatherPreset = weatherPresets[camera.weatherStationId] {
-                    camera.weatherReport = weatherPreset
-                }
-            }
-            completionHandler(cameras, nil)
+            completionHandler(stations, nil)
         }
     }
 
-    func describeRouteBetweenPoints(waypoints: [String], completionHandler: @escaping ([RouteSegment], NSError?) -> Void ) {
+    func describeRouteBetweenPoints(waypoints: [String], completionHandler: @escaping ([RouteSegment], Error?) -> Void ) {
         findWaypoints(waypoints: waypoints) {
             responseWaypoints, error in
             guard error == nil else {
@@ -284,29 +204,30 @@ class RoutingService {
         }
     }
 
-    func findWaypoints(waypoints: [String], completionHandler: @escaping ([MKPlacemark?], NSError?) -> Void) {
-        var storedError: NSError!
+    func findWaypoints(waypoints: [String], completionHandler: @escaping ([MKPlacemark?], Error?) -> Void) {
+        var storedError: Error!
         var results = [MKPlacemark?](repeating: nil, count: waypoints.count)
         let waypointGroup = DispatchGroup()
-        DispatchQueue.apply(attributes: waypoints.count, iterations: GlobalUserInitiatedQueue) { i in
+        DispatchQueue.concurrentPerform(iterations: waypoints.count) {
+            i in
             let startQuery = MKLocalSearchRequest()
             startQuery.naturalLanguageQuery = waypoints[i];
-            dispatch_group_enter(waypointGroup)
-            MKLocalSearch(request: startQuery).startWithCompletionHandler { response, error in
-                if error !== nil {
+            waypointGroup.enter()
+            MKLocalSearch(request: startQuery).start { response, error in
+                if error != nil {
                     storedError = error
                 } else if let item = response?.mapItems[0] {
                     results[i] = item.placemark
                 }
-                dispatch_group_leave(waypointGroup)
+                waypointGroup.leave()
             }
         }
-        waypointGroup.notify(queue: GlobalMainQueue) {
+        waypointGroup.notify(queue: DispatchQueue.main) {
             completionHandler(results, storedError)
         }
     }
 
-    func describeRouteBetweenPoints(waypoints: [MKPlacemark], completionHandler: @escaping ([RouteSegment], Error?) -> Void) {
+    func describeRouteBetweenPoints(_ waypoints: [MKPlacemark], completionHandler: @escaping ([RouteSegment], Error?) -> Void) {
         guard waypoints.count>0 else {
             completionHandler([], NSError(domain: "router", code: 1, userInfo: nil))
             return
@@ -339,7 +260,7 @@ class RoutingService {
         }
     }
     
-    func describeRouteBetweenPoints(waypoints: [GMSPlace], completionHandler: @escaping ([RouteSegment], Error?) -> Void) {
+    func describeRouteBetweenPoints(_ waypoints: [GMSPlace], completionHandler: @escaping ([RouteSegment], Error?) -> Void) {
         guard waypoints.count>0 else {
             completionHandler([], NSError(domain: "router", code: 1, userInfo: nil))
             return
@@ -382,32 +303,35 @@ class RoutingService {
             completionHandler(segments,nil)
             return
         }
+        print("Input", routeCoordinates.count, "points")
         var routePoints = SwiftSimplify.simplify(routeCoordinates, tolerance: 0.001).map { t in (t, t.projectToPoint()) }
-        loadCameras {
-            cameras, error  in
+        print("Simplified to", routePoints.count, "points")
+        loadStations {
+            stations, error  in
             guard error == nil else {
                 completionHandler([], error)
                 return
             }
-            var alreadyMatchedCameras = Set<String>()
+            var alreadyMatchedStations = Set<Int>()
             for i in 0...routePoints.count-2 {
-                var segmentCameras = [Camera]()
-                for c in cameras {
-                    if alreadyMatchedCameras.contains(c.id) { continue }
-                    let distance = fabs(c.projectedPoint.distanceToSegment(a: routePoints[i].1, b: routePoints[i+1].1))
+                var segmentStations = [Station]()
+                for station in stations {
+                    if alreadyMatchedStations.contains(station.id) { continue }
+                    let distance = fabs(station.projectedPoint.distanceToSegment(a: routePoints[i].1, b: routePoints[i+1].1))
                     if distance>500 { continue }
-                    if i+1 < routePoints.count-2 && distance>fabs(c.projectedPoint.distanceToSegment(a: routePoints[i+1].1, b: routePoints[i+2].1)) { continue }
-                    alreadyMatchedCameras.insert(c.id)
-                    segmentCameras.append(c)
+                    if i+1 < routePoints.count-2 && distance>fabs(station.projectedPoint.distanceToSegment(a: routePoints[i+1].1, b: routePoints[i+2].1)) { continue }
+                    alreadyMatchedStations.insert(station.id)
+                    segmentStations.append(station)
                 }
-                segmentCameras.sort { a, b in a.coordinates.distanceFrom(destination: routePoints[i].0)<b.coordinates.distanceFrom(destination: routePoints[i].0) }
+                segmentStations.sort { a, b in a.location.distanceFrom(destination: routePoints[i].0)<b.location.distanceFrom(destination: routePoints[i].0) }
                 var lastStart = routePoints[i].0
-                for c in segmentCameras {
-                    segments.append(RouteSegment(start: lastStart, end: c.coordinates, camera: c))
-                    lastStart = c.coordinates
+                for station in segmentStations {
+                    segments.append(RouteSegment(name: station.name, start: lastStart, end: station.location, station: station))
+                    lastStart = station.location
                 }
-                segments.append(RouteSegment(start: lastStart, end: routePoints[i+1].0, camera: nil))
+                segments.append(RouteSegment(name: "", start: lastStart, end: routePoints[i+1].0, station: nil))
             }
+            print("Output",segments.count,"segments")
             completionHandler(segments, nil)
         }
     }
@@ -418,15 +342,38 @@ class RoutingServiceResponse {
     var segments : [RouteSegment] = []
 }
 struct RouteSegment {
-    var name: String = ""
+    var name : String
     var start : CLLocationCoordinate2D
     var end : CLLocationCoordinate2D
-    var camera : Camera?
+    var station : Station?
     let distance : Double
-    init(start : CLLocationCoordinate2D, end: CLLocationCoordinate2D, camera: Camera?) {
+    init(name: String, start : CLLocationCoordinate2D, end: CLLocationCoordinate2D, station: Station?) {
+        self.name = name
         self.start = start
         self.end = end
-        self.camera = camera
+        self.station = station
         self.distance = start.distanceFrom(destination: end)
     }
+}
+struct Station {
+    var id: Int
+    var name: String = ""
+    var location: CLLocationCoordinate2D
+    var weatherReport: WeatherReport?
+    var cameras: [Camera] = []
+    var projectedPoint : CGPoint {
+        get {
+            return location.projectToPoint()
+        }
+    }
+}
+
+struct WeatherReport {
+    var airTemperature: Double
+    var roadTemperature: Double
+}
+struct Camera {
+    var name: String
+    var imageUrl: String
+    var latestImage: Date?
 }

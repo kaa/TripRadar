@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-@interface PodsDummy_Pods_TripRadar : NSObject
+@interface PodsDummy_Pods_Tripradar : NSObject
 @end
-@implementation PodsDummy_Pods_TripRadar
+@implementation PodsDummy_Pods_Tripradar
 @end

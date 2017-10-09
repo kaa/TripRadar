@@ -42,7 +42,7 @@ extension CLLocationCoordinate2D {
     func projectToPoint() -> CGPoint {
         let R : Double = 6378137
         let MAX_LATITUDE : Double = 85.0511287798
-        let d = M_PI / 180,
+        let d = Double.pi / 180,
         max = MAX_LATITUDE,
         p_lat = fmax(fmin(max, self.latitude), -max),
         p_sin = -sin(p_lat * d);
@@ -54,9 +54,9 @@ extension CLLocationCoordinate2D {
     
     func distanceToSegment(start: CLLocationCoordinate2D, end: CLLocationCoordinate2D) -> Double {
         let radius = Double(6371e3);
-        let δ13 = start.distanceFrom(self)/radius
-        let θ13 = start.bearingTo(self)
-        let θ12 = start.bearingTo(end)
+        let δ13 = start.distanceFrom(destination: self)/radius
+        let θ13 = start.bearingTo(destination: self)
+        let θ12 = start.bearingTo(destination: end)
         let dxt = asin( sin(δ13) * sin(θ13-θ12) ) * radius;
         return dxt;
     }
@@ -64,14 +64,14 @@ extension CLLocationCoordinate2D {
     func distanceFrom(destination:CLLocationCoordinate2D) -> Double {
         let selfLocation = CLLocation(latitude: self.longitude, longitude: self.latitude)
         let destLocation = CLLocation(latitude: destination.longitude, longitude: destination.latitude)
-        return Double(selfLocation.distanceFromLocation(destLocation))
+        return Double(selfLocation.distance(from: destLocation))
     }
     
     func bearingTo(destination:CLLocationCoordinate2D) -> Double {
-        let lat1 = self.latitude * M_PI / 180
-        let lon1 = self.longitude * M_PI / 180
-        let lat2 = destination.latitude * M_PI / 180
-        let lon2 = destination.longitude * M_PI / 180
+        let lat1 = self.latitude * .pi / 180
+        let lon1 = self.longitude * .pi / 180
+        let lat2 = destination.latitude * .pi / 180
+        let lon2 = destination.longitude * .pi / 180
         let dLon = lon2 - lon1
         let y = sin(dLon) * cos(lat2)
         let x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon)

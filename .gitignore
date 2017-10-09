@@ -48,3 +48,4 @@ playground.xcworkspace
 #
 # Pods/
 
+**/node_modules

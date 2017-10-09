@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:TripRadar.xcodeproj">
+      location = "self:Tripradar.xcodeproj">
    </FileRef>
 </Workspace>

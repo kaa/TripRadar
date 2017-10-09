@@ -22,7 +22,7 @@ class CameraTableViewCell: UITableViewCell, UIScrollViewDelegate {
     var item : CameraSegment? {
         didSet {
             guard let item = self.item else { return }
-            nameLabel.text = item.camera.name
+            nameLabel.text = item.name
             for view in stackView.subviews {
                 view.removeFromSuperview()
             }
@@ -35,14 +35,14 @@ class CameraTableViewCell: UITableViewCell, UIScrollViewDelegate {
             let negativeTemperatureColor = UIColor(red: 0, green: 90/255.0, blue: 1, alpha: 1)
             distanceLabel.distance = item.distance
             let weatherString = NSMutableAttributedString()
-            if let roadTemperature = item.camera.weatherReport?.roadTemperature {
+            if let roadTemperature = item.weatherReport?.roadTemperature {
                 weatherString.append(NSAttributedString(string: "Road "))
                 weatherString.append(NSAttributedString(string: "\(roadTemperature)°", attributes: [
                     NSAttributedStringKey.foregroundColor: roadTemperature >= 0 ? positiveTemperatureColor : negativeTemperatureColor
                 ]))
                 weatherString.append(NSAttributedString(string: " "))
             }
-            if let airTemperature = item.camera.weatherReport?.airTemperature {
+            if let airTemperature = item.weatherReport?.airTemperature {
                 weatherString.append(NSAttributedString(string: "Air "))
                 weatherString.append(NSAttributedString(string: "\(airTemperature)°", attributes: [
                     NSAttributedStringKey.foregroundColor: airTemperature >= 0 ? positiveTemperatureColor : negativeTemperatureColor
@@ -50,8 +50,7 @@ class CameraTableViewCell: UITableViewCell, UIScrollViewDelegate {
             }
             weatherLabel.attributedText = weatherString
             
-            let activeDirections = item.camera.directions.filter { $0.isActive }
-            if activeDirections.count == 0 {
+            if item.cameras.count == 0 {
                 let imageView = UIImageView()
                 imageView.image = UIImage(named: "default")
                 stackView.addArrangedSubview(imageView)
@@ -79,14 +78,13 @@ class CameraTableViewCell: UITableViewCell, UIScrollViewDelegate {
                     )
                 )
             } else {
-            for direction in activeDirections {
-                let cameraUrl = "http://weathercam.digitraffic.fi/\(direction.id).jpg"
+            for camera in item.cameras {
                 let imageView = UIImageView()
                 stackView.addArrangedSubview(imageView)
                 imageView.translatesAutoresizingMaskIntoConstraints = false
                 imageView.alpha = 0
                 imageView.sd_setImage(
-                    with: URL(string: cameraUrl)!,
+                    with: URL(string: camera.imageUrl)!,
                     placeholderImage: UIImage(named: "default"),
                     options: SDWebImageOptions.retryFailed
                 ) {
