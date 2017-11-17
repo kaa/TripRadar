@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="lib/leaflet.css" />
+
+  <style type="text/css">
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    #cameras {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    #cameras img {
+      width: 250px;
+    }
+    #map {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+  <div id="cameras"></div>
+  <script src="lib/leaflet.js"></script>
+  <script src="lib/Polyline.encoded.js"></script>
+  <script type="text/javascript">
+    var map = L.map('map', { 
+				scrollWheelZoom: false, 
+				center: [60.38171447, 23.45443684], //65.171704,25.9448013],
+			    zoom: 5 
+			});
+			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+				maxZoom: 18,
+				detectRetina: true,
+				id: 'jbeijar.odp7k39n',
+				accessToken: 'pk.eyJ1IjoiamJlaWphciIsImEiOiJjaWhyZzBlNmIwMDg3dGxtMWlvbHN0NHJoIn0.548hBxyECg4AECqnhL_OBQ'
+			}).addTo(map);		
+      
+      function getJsonResponse(response){
+        if (response.status !== 200)
+          throw new Error(response.status);
+        return response.json()
+      }
+      
+      Promise.all([
+        fetch("data/cameras.json").then(getJsonResponse),
+        fetch("data/route.json").then(getJsonResponse)
+      ]).then(function(results){
+        var cameras = results[0]
+              .map(function(e) { 
+                return T.camera(e)
+              }),
+            routing = results[1];
+  
+        console.time("matchCameras");
+        var points = L.PolylineUtil
+          .decode(routing.routes[0].overview_polyline.points)
+          .map(L.point)
+        var simplifiedLatLngs = L.LineUtil
+          .simplify(points, 0.0001)
+          .map(function(e){
+            return L.latLng(e.x,e.y)
+          }); 
+        var polyline = L.polyline(simplifiedLatLngs).addTo(map);
+        map.fitBounds(polyline.getBounds());
+        
+        var tolerance = 0.0001;
+        var matchingCameras = []
+        simplifiedLatLngs
+          .map(function(e) {
+             return L.Projection.SphericalMercator.project(e)
+          })
+          .reduce(function(a,b){
+            var segmentMatchingCameras = cameras
+              .filter(function(c){
+                var distance = L.LineUtil.pointToSegmentDistance(c.point, a, b);
+                return distance < tolerance;
+              })
+              .sort(function(p,q) {
+                return a.distanceTo(p)-a.distanceTo(q);
+              })
+            matchingCameras = matchingCameras.concat(segmentMatchingCameras);
+            return b
+          })
+        console.timeEnd("matchCameras")
+
+        var lastId;
+        var camsDiv = document.getElementById("cameras")
+        matchingCameras
+          .filter(function(e){
+            var t = e.id!==lastId;
+            lastId = e.id;
+            return t;
+          })
+          .forEach(function(e){
+            L.marker(e.latLng).addTo(map)
+            var camDiv = document.createElement("div");
+            camDiv.innerHTML = '<img src="http://weathercam.digitraffic.fi/'+e.directions[0].id+'.jpg"/>';
+            camsDiv.appendChild(camDiv);
+          }); 
+      });
+      
+      
+      T = {}
+      T.Camera = function(data) {
+        this.id = data.id;
+        this.latLng = L.latLng(data.lat,data.lng);
+        this.point = L.Projection.SphericalMercator.project(this.latLng);
+        this.directions = data.directions;
+      }
+      T.camera = function (latlng, id) {
+        return new T.Camera(latlng, id);
+      };
+  </script>
+</body>
+
+</html>
